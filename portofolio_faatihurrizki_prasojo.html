@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faatihurrizki Prasojo | Informatics Engineering Student & Developer</title>
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom Tailwind Config for Gradient Colors -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        darkbg: '#0B0F17',
+                        darkcard: 'rgba(18, 24, 38, 0.7)',
+                        pastelOrange: {
+                            400: '#FB923C',
+                            500: '#F97316',
+                            glow: 'rgba(249, 115, 22, 0.25)'
+                        },
+                        mintBlue: {
+                            300: '#5EEAD4',
+                            400: '#2DD4BF',
+                            glow: 'rgba(45, 212, 191, 0.25)'
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-accent': 'linear-gradient(135deg, #FB923C 0%, #2DD4BF 100%)',
+                        'gradient-text': 'linear-gradient(135deg, #FFC09F 0%, #A5F3FC 100%)',
+                        'gradient-card': 'linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Modern Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+
+        /* Ambient Glow Effects */
+        .glow-orange {
+            box-shadow: 0 0 50px -10px rgba(249, 115, 22, 0.3);
+        }
+        .glow-mint {
+            box-shadow: 0 0 50px -10px rgba(45, 212, 191, 0.3);
+        }
+        
+        /* Glassmorphism styling */
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-panel-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-panel-hover:hover {
+            border-color: rgba(45, 212, 191, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Custom text gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, #FFB088 0%, #70EFDE 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-darkbg text-slate-300 font-sans antialiased selection:bg-mintBlue-400 selection:text-slate-900 relative overflow-x-hidden">
+
+    <!-- Background Ambient Gradient Blobs -->
+    <div class="fixed top-0 left-1/4 -translate-x-1/2 w-[500px] h-[500px] bg-pastelOrange-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+    <div class="fixed bottom-1/3 right-10 w-[600px] h-[600px] bg-mintBlue-400/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-4 transition-all duration-300" id="navbar">
+        <div class="max-w-6xl mx-auto glass-panel rounded-2xl px-5 py-3 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-bold font-mono tracking-wider text-white flex items-center gap-2">
+                <span class="inline-block w-3 h-3 rounded-full bg-gradient-accent"></span>
+                <span>Portofolio</span>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" class="hover:text-mintBlue-300 transition-colors">Tentang</a>
+                <a href="#skills" class="hover:text-mintBlue-300 transition-colors">Keahlian</a>
+                <a href="#projects" class="hover:text-mintBlue-300 transition-colors">Proyek</a>
+                <a href="#experience" class="hover:text-mintBlue-300 transition-colors">Pengalaman</a>
+                <a href="#contact" class="hover:text-mintBlue-300 transition-colors">Kontak</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#contact" class="px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-accent text-slate-950 hover:opacity-90 transition-opacity shadow-lg shadow-pastelOrange-500/20">
+                    Hubungi Saya
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="menuBtn" class="md:hidden text-slate-300 hover:text-white focus:outline-none p-1">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden md:hidden max-w-6xl mx-auto mt-2 glass-panel rounded-2xl p-5 flex-col gap-4">
+            <a href="#about" class="mobile-link text-slate-300 hover:text-mintBlue-300 transition-colors py-1">Tentang</a>
+            <a href="#skills" class="mobile-link text-slate-300 hover:text-mintBlue-300 transition-colors py-1">Keahlian</a>
+            <a href="#projects" class="mobile-link text-slate-300 hover:text-mintBlue-300 transition-colors py-1">Proyek</a>
+            <a href="#experience" class="mobile-link text-slate-300 hover:text-mintBlue-300 transition-colors py-1">Pengalaman</a>
+            <a href="#contact" class="mobile-link text-slate-300 hover:text-mintBlue-300 transition-colors py-1">Kontak</a>
+            <a href="#contact" class="mobile-link px-4 py-2 text-center rounded-xl text-xs font-semibold bg-gradient-accent text-slate-950 mt-2">
+                Hubungi Saya
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="min-h-screen pt-32 pb-20 flex items-center justify-center relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Hero Left Column: Text & CTA -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel border border-mintBlue-400/30 text-xs text-mintBlue-300 font-medium">
+                        <span class="w-2 h-2 rounded-full bg-mintBlue-400 animate-pulse"></span>
+                        Available for Full-stack & Mobile Development
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
+                        Halo, Saya <br class="hidden sm:inline" />
+                        <span class="text-gradient">Faatihurrizki Prasojo</span>
+                    </h1>
+
+                    <!-- Exact Tagline Requirement -->
+                    <p class="text-lg sm:text-xl font-mono text-slate-300 font-medium tracking-wide">
+                        Informatics Engineering Student at Malang State Polytechnic
+                    </p>
+
+                    <!-- CTAs & Socials -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#projects" class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-gradient-accent text-slate-950 hover:shadow-lg hover:shadow-mintBlue-400/20 transition-all flex items-center gap-2">
+                            <span>Lihat Portfolio Proyek</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="https://github.com/faat-prasojo" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl font-semibold text-sm glass-panel text-white hover:bg-slate-800/80 transition-all flex items-center gap-2 border border-slate-700/60">
+                            <i data-lucide="github" class="w-4 h-4"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/faatihurrizki-prasojo-b196b7446/" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl font-semibold text-sm glass-panel text-white hover:bg-slate-800/80 transition-all flex items-center gap-2 border border-slate-700/60">
+                            <i data-lucide="linkedin" class="w-4 h-4"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Info Badges -->
+                    <div class="pt-6 border-t border-slate-800/80 flex flex-wrap justify-center lg:justify-start gap-6 text-slate-400 text-xs font-mono">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-pastelOrange-400"></i>
+                            <span>Malang, Jawa Timur</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="mail" class="w-4 h-4 text-mintBlue-400"></i>
+                            <span>prasojofaat@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Column: Profile Card & Photo -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-sm">
+                        <!-- Gradient backdrop aura -->
+                        <div class="absolute -inset-1 rounded-3xl bg-gradient-accent opacity-30 blur-xl"></div>
+                        
+                        <!-- Card Container -->
+                        <div class="relative glass-panel rounded-3xl p-6 border border-slate-700/50 shadow-2xl space-y-6">
+                            
+                            <!-- Profile Picture Frame -->
+                            <div class="relative w-48 h-48 mx-auto rounded-2xl overflow-hidden border-2 border-mintBlue-400/40 shadow-inner group">
+                                <img src="images/faat.jpeg" alt="Faatihurrizki Prasojo" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" id="profileImage">
+                                <div class="absolute inset-0 bg-gradient-to-t from-darkbg/80 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-2 left-2 right-2 text-center text-[10px] font-mono text-slate-300 bg-darkbg/70 py-1 rounded-lg backdrop-blur-sm border border-white/5">
+                                    Faatihurrizki Prasojo
+                                </div>
+                            </div>
+
+                            <!-- Highlights Grid -->
+                            <div class="grid grid-cols-2 gap-3 text-center">
+                                <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                                    <div class="text-xs text-slate-400 mb-1">IPK Akademik</div>
+                                    <div class="text-2xl font-bold font-mono text-mintBlue-300">3.74</div>
+                                    <button onclick="openGallery('nilai')" class="mt-3 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-mono text-[11px] border border-slate-700/50 transition-all">
+                                        <i data-lucide="images" class="w-3.5 h-3.5"></i>
+                                        <span>Dokumentasi Nilai</span>
+                                    </button>
+                                </div>
+                                <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+                                    <div class="text-xs text-slate-400 mb-1">Pengalaman</div>
+                                    <div class="text-2xl font-bold font-mono text-pastelOrange-400">Semester 5</div>
+                                </div>
+                            </div>
+
+                            <!-- Tech Stack Pills -->
+                            <div>
+                                <div class="text-xs font-mono text-slate-400 mb-2">Core Tech Stack:</div>
+                                <div class="flex flex-wrap gap-1.5">
+                                    <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-slate-800/80 text-mintBlue-300 border border-slate-700">Laravel</span>
+                                    <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-slate-800/80 text-pastelOrange-400 border border-slate-700">Flutter</span>
+                                    <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-slate-800/80 text-slate-300 border border-slate-700">PostgreSQL</span>
+                                    <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-slate-800/80 text-slate-300 border border-slate-700">PHP</span>
+                                    <span class="px-2.5 py-1 text-[11px] font-mono rounded-md bg-slate-800/80 text-slate-300 border border-slate-700">JavaScript</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT & EDUCATION SECTION -->
+    <section id="about" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono tracking-widest text-mintBlue-400 uppercase mb-2">Profil Ringkas</h2>
+                <p class="text-3xl font-bold text-white">Latar Belakang & Pendidikan</p>
+                <div class="w-12 h-1 bg-gradient-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+                <!-- Summary Card -->
+                <div class="md:col-span-7 glass-panel rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="p-2.5 rounded-xl bg-pastelOrange-500/10 text-pastelOrange-400">
+                                <i data-lucide="user" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Ringkasan Eksekutif</h3>
+                        </div>
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base font-light mb-6">
+                            Mahasiswa Semester 5 Teknologi Informasi di Politeknik Negeri Malang dengan keahlian spesifik dalam <span class="text-mintBlue-300 font-medium">Web & Mobile Development</span>. Berpengalaman merancang dan mengimplementasikan solusi full-stack mulai dari manajemen inventaris reaktif berbasis logika FIFO hingga otomasi administrasi laboratorium digital.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed text-sm sm:text-base font-light">
+                            Aktif berkolaborasi dalam tim berbasis metodologi <span class="text-pastelOrange-400 font-medium">Agile / GitHub workflow</span>, serta memiliki rekam jejak kepemimpinan kuat dalam kepengurusan himpunan dan kepanitiaan tingkat kampus.
+                        </p>
+                    </div>
+
+                    <div class="mt-8 pt-6 border-t border-slate-800 grid grid-cols-2 gap-4">
+                        <div>
+                            <span class="text-xs text-slate-500 font-mono block mb-1">BAHASA UTAMA</span>
+                            <span class="text-sm font-semibold text-slate-200">Bahasa Indonesia (Native)</span>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-500 font-mono block mb-1">BAHASA SEKUNDER</span>
+                            <span class="text-sm font-semibold text-slate-200">English (Basic)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education Timeline Card -->
+                <div class="md:col-span-5 glass-panel rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="p-2.5 rounded-xl bg-mintBlue-400/10 text-mintBlue-400">
+                                <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">Riwayat Pendidikan</h3>
+                        </div>
+
+                        <div class="space-y-6 relative border-l-2 border-slate-800 ml-3 pl-6">
+                            
+                            <!-- Polinema -->
+                            <div class="relative group">
+                                <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-mintBlue-400 ring-4 ring-darkbg"></div>
+                                <span class="text-xs font-mono text-mintBlue-400 font-semibold">2024 - Sekarang</span>
+                                <h4 class="text-base font-bold text-white mt-0.5">Politeknik Negeri Malang</h4>
+                                <p class="text-xs text-slate-400">D4 Teknik Informatika / Teknologi Informasi</p>
+                                <div class="mt-2 inline-block px-3 py-1 rounded-lg bg-slate-800/80 text-xs font-mono text-pastelOrange-400 border border-slate-700">
+                                    IP Kumulatif: 3.74 / 4.00
+                                </div>
+                            </div>
+
+                            <!-- SMAN 1 Pringsewu -->
+                            <div class="relative group">
+                                <div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-slate-700 group-hover:bg-pastelOrange-400 transition-colors ring-4 ring-darkbg"></div>
+                                <span class="text-xs font-mono text-slate-500">2020 - 2024</span>
+                                <h4 class="text-base font-semibold text-slate-200 mt-0.5">SMAN 1 Pringsewu</h4>
+                                <p class="text-xs text-slate-400">Pringsewu, Lampung</p>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-800 text-xs text-slate-400 font-mono flex justify-between items-center">
+                        <span>Status: Mahasiswa Aktif</span>
+                        <span class="text-mintBlue-300">Semester 5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills" class="py-20 relative bg-slate-950/40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono tracking-widest text-pastelOrange-400 uppercase mb-2">Kompetensi Teknikal</h2>
+                <p class="text-3xl font-bold text-white">Skill & Tech Stack</p>
+                <div class="w-12 h-1 bg-gradient-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Skill Category: Web Development -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-pastelOrange-500/10 text-pastelOrange-400 flex items-center justify-center mb-5">
+                        <i data-lucide="code" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Web Development</h3>
+                    <p class="text-xs text-slate-400 mb-4 font-light">Membangun web reaktif, terstruktur, dan scalable.</p>
+                    
+                    <ul class="space-y-2.5 font-mono text-xs">
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>Laravel / PHP</span>
+                            <span class="text-pastelOrange-400">Lanjutan</span>
+                        </li>
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>JavaScript (ES6+)</span>
+                            <span class="text-mintBlue-300">Menengah</span>
+                        </li>
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>HTML5 / CSS3</span>
+                            <span class="text-mintBlue-300">Mahir</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category: Mobile Development -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-mintBlue-400/10 text-mintBlue-400 flex items-center justify-center mb-5">
+                        <i data-lucide="smartphone" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Mobile Dev</h3>
+                    <p class="text-xs text-slate-400 mb-4 font-light">Pengembangan aplikasi Android native dan cross-platform.</p>
+                    
+                    <ul class="space-y-2.5 font-mono text-xs">
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>Flutter Framework</span>
+                            <span class="text-mintBlue-300">Menengah</span>
+                        </li>
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>Android Studio</span>
+                            <span class="text-pastelOrange-400">Native</span>
+                        </li>
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>Java Mobile</span>
+                            <span class="text-slate-400">Dasar</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category: Database & Backend -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-pastelOrange-500/10 text-pastelOrange-400 flex items-center justify-center mb-5">
+                        <i data-lucide="database" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Database</h3>
+                    <p class="text-xs text-slate-400 mb-4 font-light">Perancangan basis data relasional & query teroptimasi.</p>
+                    
+                    <ul class="space-y-2.5 font-mono text-xs">
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>PostgreSQL</span>
+                            <span class="text-mintBlue-300">Utama</span>
+                        </li>
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>MySQL</span>
+                            <span class="text-pastelOrange-400">Mahir</span>
+                        </li>
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>Relational Schemas</span>
+                            <span class="text-slate-300">Lanjutan</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Skill Category: Tools & Workflow -->
+                <div class="glass-panel glass-panel-hover rounded-2xl p-6">
+                    <div class="w-12 h-12 rounded-xl bg-mintBlue-400/10 text-mintBlue-400 flex items-center justify-center mb-5">
+                        <i data-lucide="git-branch" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-3">Tools & Metodologi</h3>
+                    <p class="text-xs text-slate-400 mb-4 font-light">Kolaborasi tim dan pengontrol versi kode.</p>
+                    
+                    <ul class="space-y-2.5 font-mono text-xs">
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>Git & GitHub</span>
+                            <span class="text-mintBlue-300">Workflow</span>
+                        </li>
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>Agile Teamwork</span>
+                            <span class="text-pastelOrange-400">Kolaboratif</span>
+                        </li>
+                        <li class="flex items-center justify-between text-slate-300">
+                            <span>UI/UX Collaboration</span>
+                            <span class="text-slate-300">Figma Sync</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono tracking-widest text-mintBlue-400 uppercase mb-2">Portofolio</h2>
+                <p class="text-3xl font-bold text-white">Pengalaman Proyek</p>
+                <div class="w-12 h-1 bg-gradient-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- Project 1: UMKM Supplier Telur -->
+                <div class="glass-panel glass-panel-hover rounded-3xl overflow-hidden p-6 sm:p-8 flex flex-col justify-between group border border-slate-800">
+                    <div>
+                        <!-- Header & Date Badge -->
+                        <div class="flex justify-between items-start gap-4 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-pastelOrange-500/10 text-pastelOrange-400 font-mono text-xs font-semibold border border-pastelOrange-500/20">
+                                Jan 2026 - Jun 2026
+                            </span>
+                            <span class="text-xs font-mono text-slate-500">Full-Stack Developer</span>
+                        </div>
+
+                        <!-- Title -->
+                        <h3 class="text-2xl font-bold text-white group-hover:text-mintBlue-300 transition-colors mb-2">
+                            Sistem Manajemen Inventaris FIFO UMKM Supplier Telur
+                        </h3>
+
+                        <!-- Role & Team -->
+                        <div class="text-xs text-slate-400 font-mono mb-4 flex items-center gap-2">
+                            <i data-lucide="users" class="w-4 h-4 text-slate-500"></i>
+                            <span>Tim 5 Orang (PM, QA, UI/UX, Full-Stack)</span>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                            Mengembangkan aplikasi web manajemen inventaris berbasis logika FIFO (First-In-First-Out) dengan perhitungan kalkulasi HPP (Harga Pokok Penjualan) dinamis dan kalkulasi biaya logistik reaktif real-time.
+                        </p>
+
+                        <!-- Highlights List -->
+                        <ul class="space-y-2 mb-6 text-xs text-slate-400 font-mono">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-mintBlue-400 shrink-0 mt-0.5"></i>
+                                <span>Multi-autentikasi terpisah (Admin & Pelanggan)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-mintBlue-400 shrink-0 mt-0.5"></i>
+                                <span>Perhitungan biaya logistik otomatis sesuai jarak & jenis kendaraan</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-mintBlue-400 shrink-0 mt-0.5"></i>
+                                <span>Modul Manajemen Piutang terstruktur</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <!-- Tech Tags -->
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 mb-6">
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-pastelOrange-400 border border-slate-800">Laravel</span>
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-slate-300 border border-slate-800">PHP</span>
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-slate-300 border border-slate-800">JavaScript</span>
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-mintBlue-300 border border-slate-800">PostgreSQL</span>
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-slate-400 border border-slate-800">GitHub</span>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="flex gap-3">
+                            <button onclick="openModal('project1')" class="flex-1 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-medium text-xs font-mono transition-all flex items-center justify-center gap-2 border border-slate-700/50">
+                                <span>Detail Proyek</span>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <a href="https://github.com/faat-prasojo/Supplier_telur" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-gradient-accent text-darkbg font-semibold text-xs font-mono transition-all hover:opacity-90 flex items-center justify-center gap-2">
+                                <i data-lucide="code" class="w-3.5 h-3.5"></i>
+                                <span>Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Lab IVSS Polinema -->
+                <div class="glass-panel glass-panel-hover rounded-3xl overflow-hidden p-6 sm:p-8 flex flex-col justify-between group border border-slate-800">
+                    <div>
+                        <!-- Header & Date Badge -->
+                        <div class="flex justify-between items-start gap-4 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-mintBlue-400/10 text-mintBlue-400 font-mono text-xs font-semibold border border-mintBlue-400/20">
+                                Jun 2025 - Sep 2025
+                            </span>
+                            <span class="text-xs font-mono text-slate-500">Web Developer</span>
+                        </div>
+
+                        <!-- Title -->
+                        <h3 class="text-2xl font-bold text-white group-hover:text-pastelOrange-400 transition-colors mb-2">
+                            Sistem Pendaftaran Magang Digital & Web IVSS Lab
+                        </h3>
+
+                        <!-- Role & Team -->
+                        <div class="text-xs text-slate-400 font-mono mb-4 flex items-center gap-2">
+                            <i data-lucide="building" class="w-4 h-4 text-slate-500"></i>
+                            <span>Lab. IVSS Jurusan Teknologi Informasi Polinema</span>
+                        </div>
+
+                        <!-- Description -->
+                        <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                            Mengembangkan front-end pengelolaan konten dinamis (Riset, Fasilitas, Berita) serta otomasi administrasi SDM khususnya Sistem Pendaftaran Magang Digital untuk mempermudah pendaftaran & seleksi.
+                        </p>
+
+                        <!-- Highlights List -->
+                        <ul class="space-y-2 mb-6 text-xs text-slate-400 font-mono">
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-pastelOrange-400 shrink-0 mt-0.5"></i>
+                                <span>Multi-role access control (Admin IVSS & Mahasiswa)</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-pastelOrange-400 shrink-0 mt-0.5"></i>
+                                <span>Front-end interaktif untuk manajemen konten riset & fasilitas</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4 text-pastelOrange-400 shrink-0 mt-0.5"></i>
+                                <span>Kolaborasi Agile 5 orang (PM, QA, UI/UX, BE, FE)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <!-- Tech Tags -->
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/80 mb-6">
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-slate-300 border border-slate-800">PHP</span>
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-slate-300 border border-slate-800">HTML5 / CSS3</span>
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-pastelOrange-400 border border-slate-800">JavaScript</span>
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-mintBlue-300 border border-slate-800">PostgreSQL</span>
+                            <span class="px-2.5 py-1 rounded-md text-[11px] font-mono bg-slate-900 text-slate-400 border border-slate-800">GitHub</span>
+                        </div>
+
+                        <!-- Action Button -->
+                        <div class="flex gap-3">
+                            <button onclick="openModal('project2')" class="flex-1 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-white font-medium text-xs font-mono transition-all flex items-center justify-center gap-2 border border-slate-700/50">
+                                <span>Detail Proyek</span>
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <a href="https://github.com/faat-prasojo/PBL_IVSS" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl bg-gradient-accent text-darkbg font-semibold text-xs font-mono transition-all hover:opacity-90 flex items-center justify-center gap-2">
+                                <i data-lucide="code" class="w-3.5 h-3.5"></i>
+                                <span>Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ORGANIZATIONAL & LEADERSHIP EXPERIENCE -->
+    <section id="experience" class="py-20 relative bg-slate-950/40">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono tracking-widest text-pastelOrange-400 uppercase mb-2">Kepemimpinan & Organisasi</h2>
+                <p class="text-3xl font-bold text-white">Pengalaman Organisasi</p>
+                <div class="w-12 h-1 bg-gradient-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto space-y-8">
+                
+                <!-- Experience Item 1: HMTI Polinema -->
+                <div class="glass-panel rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-6 pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Himpunan Mahasiswa Teknologi Informasi</h3>
+                            <p class="text-xs font-mono text-mintBlue-300">Politeknik Negeri Malang</p>
+                        </div>
+                        <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs w-fit">
+                            Feb 2025 - Jan 2026
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex flex-col p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                            <span class="text-xs font-mono text-pastelOrange-400 block mb-1">Peran Utama</span>
+                            <h4 class="text-sm font-semibold text-white mb-2">Organizing Committee Departemen PSDM</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed font-light">
+                                Bertanggung jawab atas pengembangan sumber daya mahasiswa dan koordinasi kegiatan kaderisasi internal jurusan.
+                            </p>
+                            <div class="mt-auto pt-4">
+                                <button onclick="openGallery('hmti1')" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-mono text-[11px] border border-slate-700/50 transition-all">
+                                    <i data-lucide="images" class="w-3.5 h-3.5"></i>
+                                    <span>Dokumentasi</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                            <span class="text-xs font-mono text-mintBlue-300 block mb-1">Kepemimpinan Acara</span>
+                            <h4 class="text-sm font-semibold text-white mb-2">Ketua Pelaksana Open Recruitment 2025</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed font-light">
+                                Memimpin penuh seluruh tahapan seleksi, alur pendaftaran, serta manajemen operasional panitia.
+                            </p>
+                            <div class="mt-auto pt-4">
+                                <button onclick="openGallery('hmti2')" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-mono text-[11px] border border-slate-700/50 transition-all">
+                                    <i data-lucide="images" class="w-3.5 h-3.5"></i>
+                                    <span>Dokumentasi</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                            <span class="text-xs font-mono text-pastelOrange-400 block mb-1">Manajemen Lapangan</span>
+                            <h4 class="text-sm font-semibold text-white mb-2">Korlap PKKMB JTI Polinema 2025</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed font-light">
+                                Menkoordinasikan ketertiban dan mobilisasi 435 mahasiswa baru selama rangkaian PKKMB Jurusan Teknologi Informasi.
+                            </p>
+                            <div class="mt-auto pt-4">
+                                <button onclick="openGallery('hmti3')" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-mono text-[11px] border border-slate-700/50 transition-all">
+                                    <i data-lucide="images" class="w-3.5 h-3.5"></i>
+                                    <span>Dokumentasi</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                            <span class="text-xs font-mono text-mintBlue-300 block mb-1">Public Speaking</span>
+                            <h4 class="text-sm font-semibold text-white mb-2">MC Seminar Nasional JTI 2025</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed font-light">
+                                Memandu jalannya acara formal Seminar Nasional dengan pembicara profesional industri.
+                            </p>
+                            <div class="mt-auto pt-4">
+                                <button onclick="openGallery('hmti4')" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-mono text-[11px] border border-slate-700/50 transition-all">
+                                    <i data-lucide="images" class="w-3.5 h-3.5"></i>
+                                    <span>Dokumentasi</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Item 2: Play IT JTI 2026 -->
+                <div class="glass-panel rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-6 pb-4 border-b border-slate-800">
+                        <div>
+                            <h3 class="text-xl font-bold text-white">Volunteer Play IT JTI 2026</h3>
+                            <p class="text-xs font-mono text-pastelOrange-400">Politeknik Negeri Malang</p>
+                        </div>
+                        <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 font-mono text-xs w-fit">
+                            April - Juni 2026
+                        </span>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                            <span class="text-xs font-mono text-mintBlue-300 block mb-1">Divisi Acara</span>
+                            <h4 class="text-sm font-semibold text-white mb-2">Tim Divisi Acara</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed font-light">
+                                Menyusun rundown, konsep perlombaan, serta teknis pelaksanaan agenda akbar Play IT.
+                            </p>
+                        </div>
+
+                        <div class="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80">
+                            <span class="text-xs font-mono text-pastelOrange-400 block mb-1">Kompetisi Teknikal</span>
+                            <h4 class="text-sm font-semibold text-white mb-2">Koordinator Hackathon Web Profile</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed font-light">
+                                Menyusun kriteria penilaian, koordinasi juri, dan pengelolaan alur perlombaan Hackathon Web Profile.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button onclick="openGallery('playit')" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 font-mono text-[11px] border border-slate-700/50 transition-all">
+                            <i data-lucide="images" class="w-3.5 h-3.5"></i>
+                            <span>Dokumentasi</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-mono tracking-widest text-mintBlue-400 uppercase mb-2">Mulai Kolaborasi</h2>
+                <p class="text-3xl font-bold text-white">Hubungi Saya</p>
+                <div class="w-12 h-1 bg-gradient-accent mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="flex justify-center">
+                
+                <!-- Contact Info Column -->
+                <div class="w-full max-w-3xl glass-panel rounded-3xl p-6 sm:p-10 space-y-6">
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2 text-center">Informasi Kontak</h3>
+                    <p class="text-slate-400 text-sm sm:text-base leading-relaxed font-light mb-8 text-center max-w-2xl mx-auto">
+                        Apakah Anda memiliki proyek web/mobile, tawaran magang, atau ingin berdiskusi mengenai teknologi? Jangan ragu untuk menghubungi saya melalui saluran di bawah ini.
+                    </p>
+
+                    <!-- Phone / WhatsApp -->
+                    <div class="flex items-center gap-5 p-5 sm:p-6 rounded-2xl bg-slate-900/60 border border-slate-800 group">
+                        <div class="p-4 rounded-xl bg-pastelOrange-500/10 text-pastelOrange-400 shrink-0">
+                            <i data-lucide="phone" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <span class="text-xs font-mono text-slate-500 uppercase block mb-1">Telepon / WhatsApp</span>
+                            <span class="text-base sm:text-lg font-semibold text-slate-200">0896-0261-4584</span>
+                        </div>
+                        <button onclick="copyToClipboard('089602614584')" class="p-3 text-slate-400 hover:text-white transition-colors" title="Salin nomor">
+                            <i data-lucide="copy" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex items-center gap-5 p-5 sm:p-6 rounded-2xl bg-slate-900/60 border border-slate-800 group">
+                        <div class="p-4 rounded-xl bg-mintBlue-400/10 text-mintBlue-400 shrink-0">
+                            <i data-lucide="mail" class="w-6 h-6"></i>
+                        </div>
+                        <div class="flex-grow overflow-hidden">
+                            <span class="text-xs font-mono text-slate-500 uppercase block mb-1">Email Resmi</span>
+                            <span class="text-base sm:text-lg font-semibold text-slate-200 truncate block">prasojofaat@gmail.com</span>
+                        </div>
+                        <button onclick="copyToClipboard('prasojofaat@gmail.com')" class="p-3 text-slate-400 hover:text-white transition-colors" title="Salin email">
+                            <i data-lucide="copy" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="flex items-center gap-5 p-5 sm:p-6 rounded-2xl bg-slate-900/60 border border-slate-800">
+                        <div class="p-4 rounded-xl bg-pastelOrange-500/10 text-pastelOrange-400 shrink-0">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs font-mono text-slate-500 uppercase block mb-1">Lokasi Domisili</span>
+                            <span class="text-base sm:text-lg font-semibold text-slate-200">Kota Malang, Jawa Timur</span>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="pt-6 border-t border-slate-800/80">
+                        <span class="text-sm font-mono text-slate-400 block mb-4 text-center">JARINGAN PROFESIONAL:</span>
+                        <div class="flex gap-3">
+                            <a href="https://www.linkedin.com/in/faatihurrizki-prasojo-b196b7446/" target="_blank" rel="noopener noreferrer" class="flex-1 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-mono text-slate-200 flex items-center justify-center gap-2 transition-colors border border-slate-700">
+                                <i data-lucide="linkedin" class="w-5 h-5 text-mintBlue-300"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/faat-prasojo" target="_blank" rel="noopener noreferrer" class="flex-1 py-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-sm font-mono text-slate-200 flex items-center justify-center gap-2 transition-colors border border-slate-700">
+                                <i data-lucide="github" class="w-5 h-5 text-pastelOrange-400"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-8 border-t border-slate-800/80 text-center text-xs font-mono text-slate-500">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div>
+                2026 | Faatihurrizki Prasojo. Politeknik Negeri Malang.
+            </div>
+        </div>
+    </footer>
+
+    <!-- LIGHTBOX: perbesar gambar dokumentasi -->
+    <div id="imageLightbox" class="fixed inset-0 z-[60] hidden items-center justify-center p-4 bg-black/90 cursor-zoom-out">
+        <figure class="max-w-5xl w-full text-center">
+            <img id="lightboxImg" src="" alt="" class="max-h-[80vh] w-auto mx-auto rounded-xl">
+            <figcaption id="lightboxCaption" class="mt-3 text-xs font-mono text-slate-300"></figcaption>
+        </figure>
+    </div>
+
+    <!-- MODAL POPUP FOR PROJECT DETAILS -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center px-4 bg-darkbg/80 backdrop-blur-md">
+        <div class="glass-panel max-w-2xl w-full rounded-3xl p-6 sm:p-8 border border-slate-700 max-h-[90vh] overflow-y-auto relative">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-400 hover:text-white p-1">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT FOR INTERACTION -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Fallback for avatar image if GitHub avatar has issues
+        document.getElementById('profileImage').onerror = function() {
+            this.src = 'https://placehold.co/400x400/1E293B/2DD4BF?text=FP';
+        };
+
+        // Mobile Menu Toggle Logic
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // Copy to clipboard helper without alert()
+        function copyToClipboard(text) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            showNotification('Teks berhasil disalin ke clipboard: ' + text, 'success');
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            showNotification('Terima kasih! Pesan Anda telah terkirim (Simulasi).', 'success');
+            document.getElementById('contactForm').reset();
+        }
+
+        // Custom Notification Handler
+        function showNotification(message, type) {
+            const notif = document.getElementById('notification');
+            notif.classList.remove('hidden', 'bg-emerald-950/80', 'text-emerald-300', 'border-emerald-800');
+            
+            if(type === 'success') {
+                notif.classList.add('bg-emerald-950/80', 'text-emerald-300', 'border', 'border-emerald-800');
+            }
+            
+            notif.textContent = message;
+            
+            setTimeout(() => {
+                notif.classList.add('hidden');
+            }, 4000);
+        }
+
+        const galleryData = {
+            // GANTI src & caption sesuai file nilai aslimu (taruh di folder images/)
+            nilai: { title: "Dokumentasi Nilai Akademik", meta: "Politeknik Negeri Malang • IPK 3.74 / 4.00", images: [
+                { src: "images/KHS_1.jpg", caption: "Kartu Hasil Studi Semester 1" },
+                { src: "images/KHS_2.jpg", caption: "Kartu Hasil Studi Semester 2" },
+                { src: "images/KHS_3.jpg", caption: "Kartu Hasil Studi Semester 3" },
+                { src: "images/KHS_4.jpg", caption: "Kartu Hasil Studi Semester 4" }
+            ]},
+            hmti1: { title: "Organizing Committee Departemen PSDM", meta: "HMTI Polinema • Feb 2025 - Jan 2026", images: [
+                { src: "images/hmti-psdm-1.jpeg", caption: "Sertifikat Organizing Committee" },
+                { src: "images/hmti-psdm-2.jpg", caption: "Rapat Koordinasi Departemen" }
+            ]},
+            hmti2: { title: "Ketua Pelaksana Open Recruitment 2025", meta: "HMTI Polinema • 2025", images: [
+                { src: "images/hmti-oprec-1.jpg", caption: "Pembukaan Open Recruitment" },
+                { src: "images/hmti-oprec-2.jpg", caption: "Tahapan Seleksi" },
+                { src: "images/hmti-oprec-3.jpg", caption: "Diklat Lapangan" },
+                { src: "images/hmti-oprec-4.jpg", caption: "Diklat Lapangan" }
+            ]},
+            hmti3: { title: "Korlap PKKMB JTI Polinema 2025", meta: "HMTI Polinema • 2025", images: [
+                { src: "images/hmti-pkkmb-1.png", caption: "Koordinasi Mahasiswa Baru" },
+                { src: "images/hmti-pkkmb-2.jpeg", caption: "Rangkaian PKKMB JTI" }
+            ]},
+            hmti4: { title: "MC Seminar Nasional JTI 2025", meta: "HMTI Polinema • 2025", images: [
+                { src: "images/hmti-mc-4.jpg", caption: "Memandu Seminar Nasional" },
+                { src: "images/hmti-mc-1.jpg", caption: "Dokumentasi" },
+                { src: "images/hmti-mc-2.jpg", caption: "Foto Bersama" },
+                { src: "images/hmti-mc-3.jpg", caption: "Foto Bersama" }
+            ]},
+            playit: { title: "Volunteer Play IT JTI 2026", meta: "Divisi Acara & Hackathon Web Profile • April - Juni 2026", images: [
+                { src: "images/playit-1.jpeg", caption: "Sertifikat Panitia Play IT" },
+                { src: "images/playit-2.jpeg", caption: "Sertifikat Panitia Exhibition" },
+                { src: "images/playit-5.jpeg", caption: "Sertifikat Panitia Workshop" },
+                { src: "images/playit-3.jpeg", caption: "Sertifikat Panitia Webinar" },
+                { src: "images/playit-4.jpeg", caption: "Sertifikat Panitia Seminar" },
+            ]}
+        };
+
+        // Project Modal Logic
+        const modalData = {
+            project1: {
+                title: "Sistem Manajemen Inventaris FIFO UMKM Supplier Telur",
+                period: "Januari 2026 - Juni 2026",
+                role: "Full-Stack Developer",
+                repo: "https://github.com/faat-prasojo/Supplier_telur",
+                images: [
+                    { src: "images/supplier-telur-1.png", caption: "Dashboard Admin" },
+                    { src: "images/supplier-telur-2.png", caption: "Manajemen Stok & Perhitungan FIFO" }
+                ],
+                stack: ["Laravel", "PHP", "HTML", "CSS", "JavaScript", "PostgreSQL", "GitHub"],
+                details: [
+                    "Pengembangan algoritma perhitungan FIFO (First-In-First-Out) untuk penentuan Harga Pokok Penjualan (HPP) secara tepat.",
+                    "Sistem Multi-Autentikasi terpisah untuk hak akses Admin Toko dan Pelanggan.",
+                    "Kalkulasi biaya logistik dan pengiriman secara reaktif berdasarkan jarak lokasi pelanggan dan opsi moda kendaraan.",
+                    "Integrasi modul pencatatan dan Manajemen Piutang pelanggan.",
+                    "Penggunaan GitHub Workflow untuk kolaborasi tim 5 orang (PM, QA, UI/UX, Developer)."
+                ]
+            },
+            project2: {
+                title: "Sistem Pendaftaran Magang Digital & Web IVSS Lab",
+                period: "Juni 2025 - September 2025",
+                role: "Web Developer (Front-End & Flow Logic)",
+                repo: "https://github.com/faat-prasojo/PBL_IVSS",
+                images: [
+                    { src: "images/ivss-1.png", caption: "Halaman Beranda Lab IVSS" },
+                    { src: "images/ivss-2.png", caption: "Halaman Member" },
+                    { src: "images/ivss-3.png", caption: "Berita dan Pengumuman" },
+                    { src: "images/ivss-4.png", caption: "Daftar Riset" },
+                    { src: "images/ivss-5.png", caption: "Dashboard Admin" },
+                ],
+                stack: ["PHP", "HTML5", "CSS3", "JavaScript", "PostgreSQL", "GitHub"],
+                details: [
+                    "Perancangan antarmuka front-end responsif untuk manajemen konten dinamis Laboratorium (Bidang Riset, Fasilitas, dan Berita Kampus).",
+                    "Pengembangan Sistem Pendaftaran Magang Digital untuk menyederhanakan alur berkas mahasiswa.",
+                    "Sistem terintegrasi dengan 2 Role Pengguna: Admin Laboratorium IVSS dan Mahasiswa pendaftar magang.",
+                    "Kolaborasi erat dalam tim Agile 5 orang bersama Project Manager, Software QA, UI/UX Designer, dan Back-end Developer."
+                ]
+            }
+        };
+
+        // Render grid gambar (dipakai modal proyek & modal organisasi)
+        function renderGallery(key, images) {
+            return `<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                ${images.map((img, i) => `
+                    <figure class="rounded-xl overflow-hidden border border-slate-700 bg-slate-900/60 cursor-zoom-in group/img" onclick="openLightbox('${key}', ${i})">
+                        <img src="${img.src}" alt="${img.caption}" loading="lazy" onerror="imgFallback(this)" class="w-full h-36 object-cover transition-transform duration-300 group-hover/img:scale-105">
+                        <figcaption class="px-3 py-2 text-[11px] font-mono text-slate-400">${img.caption}</figcaption>
+                    </figure>`).join('')}
+            </div>`;
+        }
+
+        // Modal dokumentasi organisasi
+        function openGallery(key) {
+            const data = galleryData[key];
+            if (!data) return;
+            document.getElementById('modalContent').innerHTML = `
+                <span class="text-xs font-mono text-mintBlue-400 block mb-1">${data.meta}</span>
+                <h3 class="text-2xl font-bold text-white mb-4 pr-8">${data.title}</h3>
+                <h4 class="text-xs font-mono text-slate-400 mb-2 uppercase">Dokumentasi Kegiatan:</h4>
+                ${renderGallery(key, data.images)}
+            `;
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function openModal(key) {
+            const data = modalData[key];
+            if (!data) return;
+
+            const contentHtml = `
+                <span class="text-xs font-mono text-mintBlue-400 block mb-1">${data.period} • ${data.role}</span>
+                <h3 class="text-2xl font-bold text-white mb-4">${data.title}</h3>
+                
+                <div class="mb-6">
+                    <h4 class="text-xs font-mono text-slate-400 mb-2 uppercase">Fitur & Implementasi Kunci:</h4>
+                    <ul class="space-y-2 text-sm text-slate-300 font-light">
+                        ${data.details.map(item => `<li class="flex items-start gap-2"><span class="text-pastelOrange-400 font-bold">•</span><span>${item}</span></li>`).join('')}
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-mono text-slate-400 mb-2 uppercase">Teknologi Digunakan:</h4>
+                    <div class="flex flex-wrap gap-2">
+                        ${data.stack.map(tech => `<span class="px-2.5 py-1 rounded-md text-xs font-mono bg-slate-800 text-slate-200 border border-slate-700">${tech}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h4 class="text-xs font-mono text-slate-400 mb-2 uppercase">Dokumentasi Proyek:</h4>
+                    ${renderGallery(key, data.images)}
+                </div>
+
+                <a href="${data.repo}" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-accent text-darkbg font-semibold text-xs font-mono hover:opacity-90 transition-all">
+                    <i data-lucide="code" class="w-3.5 h-3.5"></i>
+                    <span>Lihat Source Code</span>
+                </a>
+            `;
+
+            document.getElementById('modalContent').innerHTML = contentHtml;
+            lucide.createIcons(); // render ulang ikon yang baru disisipkan ke modal
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        // Fallback kalau file gambar belum ada / path salah
+        const IMG_PLACEHOLDER = 'data:image/svg+xml;utf8,' + encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240"><rect width="100%" height="100%" fill="#1E293B"/><text x="50%" y="50%" fill="#64748B" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">Screenshot belum ditambahkan</text></svg>');
+        function imgFallback(el) {
+            el.onerror = null; // cegah loop kalau placeholder ikut gagal
+            el.src = IMG_PLACEHOLDER;
+        }
+
+        // Lightbox
+        function openLightbox(key, index) {
+            const img = (modalData[key] || galleryData[key]).images[index];
+            const box = document.getElementById('imageLightbox');
+            const el = document.getElementById('lightboxImg');
+            el.onerror = function () { imgFallback(this); };
+            el.src = img.src;
+            el.alt = img.caption;
+            document.getElementById('lightboxCaption').textContent = img.caption;
+            box.classList.remove('hidden');
+            box.classList.add('flex');
+        }
+        function closeLightbox() {
+            const box = document.getElementById('imageLightbox');
+            box.classList.add('hidden');
+            box.classList.remove('flex');
+        }
+        document.getElementById('imageLightbox').addEventListener('click', closeLightbox);
+        document.addEventListener('keydown', (e) => {
+            if (e.key !== 'Escape') return;
+            if (!document.getElementById('imageLightbox').classList.contains('hidden')) closeLightbox();
+            else closeModal();
+        });
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking backdrop
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
